@@ -2,7 +2,6 @@ import 'package:country_info_checker/view/country_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'providers/theme_provider.dart';
-import 'services/country_api_service.dart';
 
 void main() {
   runApp(
