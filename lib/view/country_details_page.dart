@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/country.dart';
+import '../utils/responsiveness.dart'; // Import the Responsive class
 
 class CountryDetailScreen extends ConsumerWidget {
   final Country country;
@@ -20,7 +21,9 @@ class CountryDetailScreen extends ConsumerWidget {
         ),
         title: Text(
           country.name,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: Responsive.getAdaptiveFontSize(context, 22),
+              ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
@@ -31,7 +34,7 @@ class CountryDetailScreen extends ConsumerWidget {
             AspectRatio(
               aspectRatio: 2,
               child: Container(
-                margin: const EdgeInsets.all(16),
+                margin: Responsive.getScreenPadding(context),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
@@ -45,22 +48,22 @@ class CountryDetailScreen extends ConsumerWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    country.flagImage,
+                    '${country.flagImage}',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: Responsive.getScreenPadding(context),
               child: Column(
                 children: [
-                  _buildInfoRow('Population', country.population),
-                  _buildInfoRow('Capital', country.capital),
-                  _buildInfoRow('president', country.president),
-                  _buildInfoRow('Country code', country.countryCode),
-                  _buildInfoRow('Continent', country.continent),
-                   if (country.states != null && country.states!.isNotEmpty)
+                  _buildInfoRow('Population', country.population, context),
+                  _buildInfoRow('Capital', country.capital, context),
+                  _buildInfoRow('President', country.president, context),
+                  _buildInfoRow('Country code', country.countryCode, context),
+                  _buildInfoRow('Continent', country.continent, context),
+                  if (country.states != null && country.states!.isNotEmpty)
                     _buildStatesSection(context),
                 ],
               ),
@@ -70,6 +73,7 @@ class CountryDetailScreen extends ConsumerWidget {
       ),
     );
   }
+
   Widget _buildStatesSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +81,9 @@ class CountryDetailScreen extends ConsumerWidget {
         const Divider(height: 32),
         Text(
           'States',
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: Responsive.getAdaptiveFontSize(context, 20),
+              ),
         ),
         const SizedBox(height: 16),
         ListView.separated(
@@ -89,22 +95,20 @@ class CountryDetailScreen extends ConsumerWidget {
             return ListTile(
               title: Text(
                 country.states![index].name,
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontSize: Responsive.getAdaptiveFontSize(context, 16),
+                    ),
               ),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () {
-                // Handle state selection if needed
-              },
+              onTap: () {},
             );
           },
         ),
       ],
     );
   }
-}
 
- 
-  Widget _buildInfoRow(String label, String value) {
+  Widget _buildInfoRow(String label, String value, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -112,16 +116,18 @@ class CountryDetailScreen extends ConsumerWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w500,
               color: Colors.grey,
+              fontSize: Responsive.getAdaptiveFontSize(context, 16),
             ),
           ),
           Flexible(
             child: Text(
               value,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w500,
+                fontSize: Responsive.getAdaptiveFontSize(context, 16),
               ),
               textAlign: TextAlign.right,
             ),
@@ -130,3 +136,4 @@ class CountryDetailScreen extends ConsumerWidget {
       ),
     );
   }
+}

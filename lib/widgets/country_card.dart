@@ -1,6 +1,6 @@
 import 'package:country_info_checker/model/country.dart';
 import 'package:flutter/material.dart';
-
+import '../utils/responsiveness.dart'; 
 class CountryCard extends StatelessWidget {
   const CountryCard({super.key, required this.country});
   final Country country;
@@ -10,7 +10,10 @@ class CountryCard extends StatelessWidget {
     return AnimatedContainer(
       curve: Curves.easeInOut,
       duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(
+        horizontal: Responsive.getScreenPadding(context).horizontal / 2,
+        vertical: Responsive.getScreenPadding(context).vertical / 2,
+      ),
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(16),
@@ -23,7 +26,7 @@ class CountryCard extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: Responsive.getScreenPadding(context),
         leading: Container(
           width: 48,
           height: 48,
@@ -37,11 +40,15 @@ class CountryCard extends StatelessWidget {
         ),
         title: Text(
           country.name,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontSize: Responsive.getAdaptiveFontSize(context, 18),
+              ),
         ),
         subtitle: Text(
           country.capital,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontSize: Responsive.getAdaptiveFontSize(context, 14),
+              ),
         ),
       ),
     );

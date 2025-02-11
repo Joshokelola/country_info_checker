@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controllers/country_controller.dart';
 import '../providers/search_query_provider.dart';
 import '../providers/theme_provider.dart';
+import '../utils/responsiveness.dart';
 import '../widgets/country_card.dart';
 
 class CountryListScreen extends ConsumerWidget {
@@ -24,7 +25,9 @@ class CountryListScreen extends ConsumerWidget {
               elevation: 0,
               title: Text(
                 'Explore.',
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontSize: Responsive.getAdaptiveFontSize(context, 24),
+                    ),
               ),
               actions: [
                 IconButton(
@@ -41,7 +44,7 @@ class CountryListScreen extends ConsumerWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: Responsive.getScreenPadding(context),
                 child: Column(
                   children: [
                     TextField(
@@ -82,10 +85,12 @@ class CountryListScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
+                            padding: Responsive.getScreenPadding(context),
                             child: Text(
                               letter,
-                              style: Theme.of(context).textTheme.headlineLarge,
+                              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                    fontSize: Responsive.getAdaptiveFontSize(context, 20),
+                                  ),
                             ),
                           ),
                           ...countriesInGroup.map((country) => GestureDetector(
