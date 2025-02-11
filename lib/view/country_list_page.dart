@@ -88,8 +88,12 @@ class CountryListScreen extends ConsumerWidget {
                             padding: Responsive.getScreenPadding(context),
                             child: Text(
                               letter,
-                              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                    fontSize: Responsive.getAdaptiveFontSize(context, 20),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge
+                                  ?.copyWith(
+                                    fontSize: Responsive.getAdaptiveFontSize(
+                                        context, 20),
                                   ),
                             ),
                           ),

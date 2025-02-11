@@ -19,7 +19,7 @@ class CountryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.04),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
             offset: const Offset(0, 4),
             blurRadius: 12,
           ),
@@ -27,14 +27,17 @@ class CountryCard extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: Responsive.getScreenPadding(context),
-        leading: Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            image: DecorationImage(
-              image: NetworkImage(country.flagImage),
-              fit: BoxFit.cover,
+        leading: Hero(
+          tag: 'flag-${country.name}',
+          child: Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                image: NetworkImage(country.flagImage),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
