@@ -80,7 +80,6 @@ final lightTheme = ThemeData(
     primary: Color(0xFF2B2B2B),
     onPrimary: Colors.white,
     surface: Colors.white,
-    background: Colors.white,
     onSurface: Color(0xFF2B2B2B),
   ),
   cardTheme: CardTheme(
@@ -104,24 +103,24 @@ final lightTheme = ThemeData(
   ),
   textTheme: TextTheme(
     headlineLarge: GoogleFonts.inter(
-      color: Color(0xFF2B2B2B),
+      color: const Color(0xFF2B2B2B),
       fontSize: 32,
       fontWeight: FontWeight.bold,
     ),
     bodyLarge: GoogleFonts.inter(
-      color: Color(0xFF2B2B2B),
+      color: const Color(0xFF2B2B2B),
       fontSize: 16,
       fontWeight: FontWeight.w500,
     ),
     bodyMedium: GoogleFonts.inter(
-      color: Color(0xFF666666),
+      color: const Color(0xFF666666),
       fontSize: 14,
     ),
   ),
   chipTheme: ChipThemeData(
     backgroundColor: const Color(0xFFF5F5F5),
     labelStyle: GoogleFonts.inter(
-      color: Color(0xFF2B2B2B),
+      color: const Color(0xFF2B2B2B),
       fontSize: 14,
       fontWeight: FontWeight.w500,
     ),
