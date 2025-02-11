@@ -41,3 +41,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+state.json
+test.json
+flutter_01.png
+flutter_02.png
