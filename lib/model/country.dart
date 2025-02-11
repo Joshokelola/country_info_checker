@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'state.dart';
 
 class Country {
-  final String name;
-  final String capital;
+  final String name; 
+  final String capital; 
   String? statesUrl;
   List<State>? states;
-  final String flagImage;
-  final String population;
+  final String flagImage; 
+  final String population; 
   final String president;
   final String continent;
   final String countryCode;
