@@ -2,6 +2,7 @@ import 'package:country_info_checker/view/country_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'provider/theme_provider.dart';
+import 'services/country_api_service.dart';
 
 void main() {
   runApp(
@@ -23,7 +24,7 @@ class MyApp extends ConsumerWidget {
       child: MaterialApp(
         title: 'Country Info Checker',
         theme: isDarkMode ? darkTheme : lightTheme,
-        home: const Scaffold(
+        home: Scaffold(
           body: ExplorerScreen()
         ),
         

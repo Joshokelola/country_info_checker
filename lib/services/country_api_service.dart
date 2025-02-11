@@ -1,6 +1,7 @@
 import 'package:country_info_checker/model/country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../model/state.dart' as state;
 
 class CountryApiService {
   final Dio _dio;
