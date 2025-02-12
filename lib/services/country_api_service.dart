@@ -3,14 +3,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:country_info_checker/model/state.dart' as s;
 
+import '../utils/api_key.dart';
+
 class CountryApiService {
   final Dio _dio;
   static const String _baseUrl = 'https://restfulcountries.com/api/v1';
-  static const String _authToken =
-      '2099|JJVIQG5ytF0hN1TJinuecsPrSGucDFk9o9I7V2o6';
+
 
   CountryApiService() : _dio = Dio() {
-    _dio.options.headers['Authorization'] = 'Bearer $_authToken';
+    _dio.options.headers['Authorization'] = 'Bearer $authToken';
     _dio.options.baseUrl = _baseUrl;
   }
   Future<List<s.State>> getStatesForCountry(String statesUrl) async {
