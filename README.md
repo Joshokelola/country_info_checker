@@ -38,7 +38,7 @@ Light Theme
 Left to Right: Welcome Screen, Countries List, Country Details
 Dark Theme
 <p float="left">
-  <img src="flutter_04.png" width="160" />
+  <img src="flutter_06.png" width="160" />
   <img src="flutter_04.png" width="160" />
   <img src="flutter_05.png" width="160" />
 </p>
