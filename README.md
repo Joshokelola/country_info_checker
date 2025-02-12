@@ -28,22 +28,20 @@ A modern mobile application providing comprehensive information about countries 
   * Offline data access
   * Fluid animations
 
-## 📱 Screenshots
-
-![Initial Screen](flutter_01.png)
-*Application loading screen*
-
-![Home Screen](flutter_02.png)
-*Country listing with search functionality*
-
-![Country Details](flutter_03.png)
-*Detailed country information view*
-
-![Dark Theme - Home](flutter_04.png)
-*Dark theme implementation - Home screen*
-
-![Dark Theme - Details](flutter_05.png)
-*Dark theme implementation - Details view*
+📱 App Preview
+Light Theme
+<p float="left">
+  <img src="flutter_01.png" width="160" />
+  <img src="flutter_02.png" width="160" /> 
+  <img src="flutter_03.png" width="160" />
+</p>
+Left to Right: Welcome Screen, Countries List, Country Details
+Dark Theme
+<p float="left">
+  <img src="flutter_04.png" width="160" />
+  <img src="flutter_05.png" width="160" />
+</p>
+Left to Right: Countries List, Country Details
 
 ## 🛠️ Technology Stack
 
