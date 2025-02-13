@@ -34,37 +34,10 @@ class CountryDetailScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Flag Image Section
             CountryCarousel(imageUrls: [
               '${country.flags!['png']}',
               '${country.coatOfArms!['png']}'
             ], countryName: country.name!),
-            // Padding(
-            //   padding: Responsive.getScreenPadding(context),
-            //   child: Card(
-            //     elevation: 4,
-            //     shadowColor:
-            //         Theme.of(context).colorScheme.primary.withOpacity(0.3),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(16),
-            //     ),
-            //     child: ClipRRect(
-            //       borderRadius: BorderRadius.circular(16),
-            //       child: AspectRatio(
-            //         aspectRatio: 2,
-            //         child: Hero(
-            //           tag: 'flag-${country.name}',
-            //           child: Image.network(
-            //             country.flags!['png'],
-            //             fit: BoxFit.cover,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
-            // Country Details Section
             Padding(
               padding: Responsive.getScreenPadding(context),
               child: Column(
@@ -89,11 +62,7 @@ class CountryDetailScreen extends ConsumerWidget {
                                   ? ''
                                   : country.capital.first,
                               context),
-                          _buildInfoRow(
-                              'Country code',
-                              country.cca3!,
-                                 
-                              context),
+                          _buildInfoRow('Country code', country.cca3!, context),
                           const SizedBox(
                             height: 15,
                           ),
@@ -105,9 +74,7 @@ class CountryDetailScreen extends ConsumerWidget {
                               '${country.area?.toString() ?? ""} km²', context),
                           _buildInfoRow(
                               'Currency',
-                              '${country.currencies?.values.first['name']
-                                      ?.toString()} (${country.currencies?.values.first['symbol']})'
-                                ,
+                              '${country.currencies?.values.first['name']?.toString()} (${country.currencies?.values.first['symbol']})',
                               context),
                           const SizedBox(
                             height: 15,
@@ -117,16 +84,13 @@ class CountryDetailScreen extends ConsumerWidget {
                           _buildInfoRow(
                               'Dialling code',
                               '${country.dialingCodes?['root']?.toString()}${country.dialingCodes?['suffixes']?.first}',
-                             context),
+                              context),
                           _buildInfoRow(
                               'Driving side',
                               country.drivingSide?['side']?.toString() ?? '',
                               context),
                         ],
                       )),
-                  // if (country.statesUrl != null &&
-                  //     country.statesUrl!.isNotEmpty)
-                  //   _buildStatesSection(context, ref),
                 ],
               ),
             ),
@@ -135,87 +99,6 @@ class CountryDetailScreen extends ConsumerWidget {
       ),
     );
   }
-
-  // Widget _buildStatesSection(BuildContext context, WidgetRef ref) {
-  //   return ref.watch(getStatesProvider(country.statesUrl!)).when(
-  //     data: (data) {
-  //       return Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           const Divider(height: 32),
-  //           Text(
-  //             'States',
-  //             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-  //                   fontSize: Responsive.getAdaptiveFontSize(context, 22),
-  //                   fontWeight: FontWeight.bold,
-  //                 ),
-  //           ),
-  //           const SizedBox(height: 16),
-  //           Card(
-  //             elevation: 4,
-  //             shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-  //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(16),
-  //             ),
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(16),
-  //               child: ListView.builder(
-  //                 physics: const NeverScrollableScrollPhysics(),
-  //                 shrinkWrap: true,
-  //                 itemCount: data.length,
-  //                 itemBuilder: (context, index) {
-  //                   return Container(
-  //                       padding: const EdgeInsets.symmetric(vertical: 12),
-  //                       decoration: BoxDecoration(
-  //                         border: index != data.length - 1
-  //                             ? Border(
-  //                                 bottom: BorderSide(
-  //                                   color: Colors.grey.withOpacity(0.2),
-  //                                   width: 1,
-  //                                 ),
-  //                               )
-  //                             : null,
-  //                       ),
-  //                       child: Text(
-  //                         data[index].name,
-  //                         style: Theme.of(context)
-  //                             .textTheme
-  //                             .bodyLarge
-  //                             ?.copyWith(
-  //                               fontSize:
-  //                                   Responsive.getAdaptiveFontSize(context, 18),
-  //                             ),
-  //                       ));
-  //                 },
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //     error: (error, __) {
-  //       return Padding(
-  //           padding: const EdgeInsets.symmetric(vertical: 16),
-  //           child: Center(
-  //             child: Text(
-  //               'Failed to load states: $error',
-  //               style: TextStyle(
-  //                 color: Colors.red,
-  //                 fontSize: Responsive.getAdaptiveFontSize(context, 16),
-  //               ),
-  //             ),
-  //           ));
-  //     },
-  //     loading: () {
-  //       return const Padding(
-  //         padding: EdgeInsets.symmetric(vertical: 16),
-  //         child: Center(
-  //           child: CircularProgressIndicator(),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   Widget _buildInfoRow(String label, String value, BuildContext context) {
     return Padding(

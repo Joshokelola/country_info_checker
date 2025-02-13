@@ -7,22 +7,10 @@ class CountryApiService {
   static const String _baseUrl = 'https://restcountries.com/v3.1';
 
   CountryApiService() : _dio = Dio() {
-    // _dio.options.headers['Authorization'] = 'Bearer $authToken';
+    
     _dio.options.baseUrl = _baseUrl;
   }
-  // Future<List<s.State>> getStatesForCountry(String statesUrl) async {
-  //   try {
-  //     final response = await _dio.get(statesUrl);
-  //     final stateResponseData = response.data['data'] as List<dynamic>? ?? [];
-  //     return stateResponseData.map((e) => s.State.fromMap(e)).toList();
-  //   } on DioException catch (e) {
-  //    debugPrint('Network error fetching states, error - $e');
-  //     return [];
-  //   } catch (e, stackTrace) {
-  //    debugPrint('Unexpected error fetching states, error - $e, stacktrace - $stackTrace');
-  //     return [];
-  //   }
-  // }
+
   Future<List<Country>?> getAllCountries() async {
     try {
       final response = await _dio.get('/all');

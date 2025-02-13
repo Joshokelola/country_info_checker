@@ -33,6 +33,22 @@ final darkTheme = ThemeData(
     ),
     elevation: 0,
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      iconColor: WidgetStatePropertyAll(Colors.grey.shade300),
+      textStyle: const WidgetStatePropertyAll(TextStyle(color: Colors.grey)),
+      backgroundColor: WidgetStateProperty.all(
+        const Color(0xFF0B0F1E),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+            side: BorderSide(
+              color: Colors.grey.shade300,
+            )),
+      ),
+    ),
+  ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: Colors.white.withOpacity(0.08),
@@ -45,26 +61,39 @@ final darkTheme = ThemeData(
       borderSide: BorderSide.none,
     ),
   ),
-  textTheme: TextTheme(
-    headlineLarge: const TextStyle(
+  textTheme: const TextTheme(
+    headlineLarge: TextStyle(
       fontFamily: 'Axiforma',
       color: Colors.white,
       fontSize: 32,
-      fontWeight: FontWeight.w700, // Bold
+      fontWeight: FontWeight.w700,
     ),
-    bodyLarge: const TextStyle(
+    bodyLarge: TextStyle(
       fontFamily: 'Axiforma',
       color: Colors.white,
       fontSize: 16,
-      fontWeight: FontWeight.w400, // Regular
+      fontWeight: FontWeight.w400,
     ),
     bodyMedium: TextStyle(
       fontFamily: 'Axiforma',
       color: Colors.white70,
       fontSize: 14,
-      fontWeight: FontWeight.w400, // Regular
+      fontWeight: FontWeight.w400,
     ),
   ),
+  textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+    foregroundColor: const WidgetStatePropertyAll(Colors.white),
+    padding: const WidgetStatePropertyAll(
+      EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+        side: const BorderSide(color: Colors.white),
+      ),
+    ),
+  )),
   chipTheme: ChipThemeData(
     backgroundColor: Colors.white.withOpacity(0.08),
     labelStyle: TextStyle(
@@ -87,7 +116,7 @@ final lightTheme = ThemeData(
       fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 24,
-      fontWeight: FontWeight.w700, // Bold
+      fontWeight: FontWeight.w700,
     ),
   ),
   colorScheme: const ColorScheme.light(
@@ -116,24 +145,52 @@ final lightTheme = ThemeData(
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
   ),
+  textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+    foregroundColor: const WidgetStatePropertyAll(Colors.black),
+    padding: const WidgetStatePropertyAll(
+      EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+        side: const BorderSide(color: Colors.black),
+      ),
+    ),
+  )),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      iconColor: const WidgetStatePropertyAll(Colors.black),
+      textStyle: const WidgetStatePropertyAll(
+        TextStyle(color: Colors.black, fontFamily: 'Axiforma'),
+      ),
+      backgroundColor:
+          WidgetStateProperty.all(const Color.fromARGB(255, 255, 255, 255)),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+    ),
+  ),
   textTheme: const TextTheme(
     headlineLarge: TextStyle(
       fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 32,
-      fontWeight: FontWeight.w700, // Bold
+      fontWeight: FontWeight.w700,
     ),
     bodyLarge: TextStyle(
       fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 16,
-      fontWeight: FontWeight.w500, // Medium
+      fontWeight: FontWeight.w500,
     ),
     bodyMedium: TextStyle(
       fontFamily: 'Axiforma',
       color: Color(0xFF666666),
       fontSize: 14,
-      fontWeight: FontWeight.w400, // Regular
+      fontWeight: FontWeight.w400,
     ),
   ),
   chipTheme: ChipThemeData(
@@ -142,7 +199,7 @@ final lightTheme = ThemeData(
       fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 14,
-      fontWeight: FontWeight.w500, // Medium
+      fontWeight: FontWeight.w500,
     ),
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     shape: RoundedRectangleBorder(
