@@ -18,30 +18,36 @@ class CountryListScreen extends ConsumerWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              floating: false,
-              pinned: true,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0,
-              title: Text(
-                'Explore.',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontSize: Responsive.getAdaptiveFontSize(context, 24),
-                    ),
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    ref.watch(themeProvider)
-                        ? Icons.light_mode
-                        : Icons.dark_mode,
-                  ),
-                  onPressed: () =>
-                      ref.read(themeProvider.notifier).toggleTheme(),
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
+          SliverAppBar(
+  floating: false,
+  pinned: true,
+  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+  elevation: 0,
+  title: Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      const SizedBox(width: 8),
+      Image.asset(
+      ref.watch(themeProvider) ? 'assets/light_logo.png' : 'assets/ex_logo.png',
+      //  height: 24, 
+        width: 110,
+        fit: BoxFit.contain,
+      ),
+     
+    ],
+  ),
+  actions: [
+    IconButton(
+      icon: Icon(
+        ref.watch(themeProvider)
+            ? Icons.light_mode_outlined
+            : Icons.dark_mode_outlined,
+      ),
+      onPressed: () => ref.read(themeProvider.notifier).toggleTheme(),
+    ),
+    const SizedBox(width: 8),
+  ],
+),
             SliverToBoxAdapter(
               child: Padding(
                 padding: Responsive.getScreenPadding(context),
@@ -72,7 +78,7 @@ class CountryListScreen extends ConsumerWidget {
                   );
                 }
 
-                countries.sort((a, b) => a.name.compareTo(b.name));
+                countries.sort((a, b) => a.name!.compareTo(b.name!));
                 final groupedCountries = _groupCountriesByLetter(countries);
 
                 return SliverList(
@@ -85,7 +91,7 @@ class CountryListScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: Responsive.getScreenPadding(context),
+                            padding: Responsive.getScreenPadding(context).subtract(const EdgeInsets.symmetric(vertical: 15)),
                             child: Text(
                               letter,
                               style: Theme.of(context)

@@ -1,4 +1,4 @@
-import 'package:country_info_checker/controllers/state_controller.dart';
+import 'package:country_info_checker/widgets/image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/country.dart';
@@ -21,7 +21,7 @@ class CountryDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          country.name,
+          country.name!,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontSize: Responsive.getAdaptiveFontSize(context, 24),
                 fontWeight: FontWeight.bold,
@@ -35,29 +35,34 @@ class CountryDetailScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Flag Image Section
-            Padding(
-              padding: Responsive.getScreenPadding(context),
-              child: Card(
-                elevation: 4,
-               shadowColor:  Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: AspectRatio(
-                    aspectRatio: 2,
-                    child: Hero(
-                      tag: 'flag-${country.name}',
-                      child: Image.network(
-                        country.flagImage,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CountryCarousel(imageUrls: [
+              '${country.flags!['png']}',
+              '${country.coatOfArms!['png']}'
+            ], countryName: country.name!),
+            // Padding(
+            //   padding: Responsive.getScreenPadding(context),
+            //   child: Card(
+            //     elevation: 4,
+            //     shadowColor:
+            //         Theme.of(context).colorScheme.primary.withOpacity(0.3),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(16),
+            //     ),
+            //     child: ClipRRect(
+            //       borderRadius: BorderRadius.circular(16),
+            //       child: AspectRatio(
+            //         aspectRatio: 2,
+            //         child: Hero(
+            //           tag: 'flag-${country.name}',
+            //           child: Image.network(
+            //             country.flags!['png'],
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             // Country Details Section
             Padding(
@@ -65,32 +70,63 @@ class CountryDetailScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Card(
-                    elevation: 4,
-                    shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
+                  Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          _buildInfoRow('Population',
+                              country.population.toString(), context),
                           _buildInfoRow(
-                              'Population', country.population, context),
-                          _buildInfoRow('Capital', country.capital, context),
+                              'Region',
+                              country.continents.isEmpty
+                                  ? ''
+                                  : country.continents.first,
+                              context),
                           _buildInfoRow(
-                              'President', country.president, context),
+                              'Capital',
+                              country.capital.isEmpty
+                                  ? ''
+                                  : country.capital.first,
+                              context),
                           _buildInfoRow(
-                              'Country Code', country.countryCode, context),
+                              'Country code',
+                              country.cca3!,
+                                 
+                              context),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           _buildInfoRow(
-                              'Continent', country.continent, context),
+                              'Official language',
+                              country.languages?.values.first?.toString() ?? '',
+                              context),
+                          _buildInfoRow('Area',
+                              '${country.area?.toString() ?? ""} km²', context),
+                          _buildInfoRow(
+                              'Currency',
+                              country.currencies?.values.first['name']
+                                      ?.toString() ??
+                                  '',
+                              context),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          _buildInfoRow('Time zone',
+                              country.timeZones?.first ?? '', context),
+                          _buildInfoRow(
+                              'Dialling code',
+                              '${country.dialingCodes?['root']?.toString()}${country.dialingCodes?['suffixes']?.first}',
+                             context),
+                          _buildInfoRow(
+                              'Driving side',
+                              country.drivingSide?['side']?.toString() ?? '',
+                              context),
                         ],
-                      ),
-                    ),
-                  ),
-                  if (country.statesUrl != null &&
-                      country.statesUrl!.isNotEmpty)
-                    _buildStatesSection(context, ref),
+                      )),
+                  // if (country.statesUrl != null &&
+                  //     country.statesUrl!.isNotEmpty)
+                  //   _buildStatesSection(context, ref),
                 ],
               ),
             ),
@@ -100,109 +136,108 @@ class CountryDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildStatesSection(BuildContext context, WidgetRef ref) {
-    return ref.watch(getStatesProvider(country.statesUrl!)).when(
-      data: (data) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Divider(height: 32),
-            Text(
-              'States',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: Responsive.getAdaptiveFontSize(context, 22),
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 16),
-            Card(
-              elevation: 4,
-              shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          border: index != data.length - 1
-                              ? Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey.withOpacity(0.2),
-                                    width: 1,
-                                  ),
-                                )
-                              : null,
-                        ),
-                        child: Text(
-                          data[index].name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(
-                                fontSize:
-                                    Responsive.getAdaptiveFontSize(context, 18),
-                              ),
-                        ));
-                  },
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-      error: (error, __) {
-        return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Center(
-              child: Text(
-                'Failed to load states: $error',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: Responsive.getAdaptiveFontSize(context, 16),
-                ),
-              ),
-            ));
-      },
-      loading: () {
-        return const Padding(
-          padding: EdgeInsets.symmetric(vertical: 16),
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
-    );
-  }
+  // Widget _buildStatesSection(BuildContext context, WidgetRef ref) {
+  //   return ref.watch(getStatesProvider(country.statesUrl!)).when(
+  //     data: (data) {
+  //       return Column(
+  //         crossAxisAlignment: CrossAxisAlignment.start,
+  //         children: [
+  //           const Divider(height: 32),
+  //           Text(
+  //             'States',
+  //             style: Theme.of(context).textTheme.titleLarge?.copyWith(
+  //                   fontSize: Responsive.getAdaptiveFontSize(context, 22),
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //           ),
+  //           const SizedBox(height: 16),
+  //           Card(
+  //             elevation: 4,
+  //             shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+  //             shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(16),
+  //             ),
+  //             child: Padding(
+  //               padding: const EdgeInsets.all(16),
+  //               child: ListView.builder(
+  //                 physics: const NeverScrollableScrollPhysics(),
+  //                 shrinkWrap: true,
+  //                 itemCount: data.length,
+  //                 itemBuilder: (context, index) {
+  //                   return Container(
+  //                       padding: const EdgeInsets.symmetric(vertical: 12),
+  //                       decoration: BoxDecoration(
+  //                         border: index != data.length - 1
+  //                             ? Border(
+  //                                 bottom: BorderSide(
+  //                                   color: Colors.grey.withOpacity(0.2),
+  //                                   width: 1,
+  //                                 ),
+  //                               )
+  //                             : null,
+  //                       ),
+  //                       child: Text(
+  //                         data[index].name,
+  //                         style: Theme.of(context)
+  //                             .textTheme
+  //                             .bodyLarge
+  //                             ?.copyWith(
+  //                               fontSize:
+  //                                   Responsive.getAdaptiveFontSize(context, 18),
+  //                             ),
+  //                       ));
+  //                 },
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //     error: (error, __) {
+  //       return Padding(
+  //           padding: const EdgeInsets.symmetric(vertical: 16),
+  //           child: Center(
+  //             child: Text(
+  //               'Failed to load states: $error',
+  //               style: TextStyle(
+  //                 color: Colors.red,
+  //                 fontSize: Responsive.getAdaptiveFontSize(context, 16),
+  //               ),
+  //             ),
+  //           ));
+  //     },
+  //     loading: () {
+  //       return const Padding(
+  //         padding: EdgeInsets.symmetric(vertical: 16),
+  //         child: Center(
+  //           child: CircularProgressIndicator(),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget _buildInfoRow(String label, String value, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Colors.grey[700],
-              fontSize: Responsive.getAdaptiveFontSize(context, 18),
+          SizedBox(
+            width: 120,
+            child: Text(
+              '$label:',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: Responsive.getAdaptiveFontSize(context, 16),
+                  fontWeight: FontWeight.w600),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Text(
               value,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: Responsive.getAdaptiveFontSize(context, 18),
-              ),
-              textAlign: TextAlign.right,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: Responsive.getAdaptiveFontSize(context, 14),
+                  fontWeight: FontWeight.w300),
             ),
           ),
         ],

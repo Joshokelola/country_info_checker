@@ -28,22 +28,6 @@ A modern mobile application providing comprehensive information about countries 
   * Offline data access
   * Fluid animations
 
-📱 App Preview
-Light Theme
-<p float="left">
-  <img src="flutter_01.png" width="160" />
-  <img src="flutter_02.png" width="160" /> 
-  <img src="flutter_03.png" width="160" />
-</p>
-Left to Right: Welcome Screen, Countries List, Country Details
-Dark Theme
-<p float="left">
-  <img src="flutter_06.png" width="160" />
-  <img src="flutter_04.png" width="160" />
-  <img src="flutter_05.png" width="160" />
-</p>
-Left to Right: Countries List, Country Details
-
 ## 🛠️ Technology Stack
 
 ### Core Platform
@@ -61,15 +45,6 @@ Left to Right: Countries List, Country Details
 1. Flutter SDK (3.24.3+)
 2. Dart SDK (3.5.3+)
 3. Restful Countries API token
-
-### API Setup
-
-1. Obtain API token: [Restful Countries](https://restfulcountries.com/request-access-token)
-2. Add token to `lib/utils/api_key.dart`:
-
-```dart
-const String authToken = 'your_api_key_here';
-```
 
 ### Development Setup
 

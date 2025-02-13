@@ -15,11 +15,11 @@ class Responsive {
 
   static EdgeInsets getScreenPadding(BuildContext context) {
     if (isMobile(context)) {
-      return const EdgeInsets.all(16.0);
-    } else if (isTablet(context)) {
       return const EdgeInsets.all(24.0);
-    } else {
+    } else if (isTablet(context)) {
       return const EdgeInsets.all(32.0);
+    } else {
+      return const EdgeInsets.all(40.0);
     }
   }
 

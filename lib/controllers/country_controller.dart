@@ -20,7 +20,7 @@ class CountryNotifier extends AsyncNotifier<List<Country>?> {
     if (_searchQuery.isEmpty) return _allCountries;
     
     return _allCountries!.where((country) =>
-      country.name.toLowerCase().contains(_searchQuery.toLowerCase())
+      country.name!.toLowerCase().contains(_searchQuery.toLowerCase())
     ).toList();
   }
 

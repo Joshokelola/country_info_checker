@@ -16,6 +16,7 @@ class ThemeNotifier extends StateNotifier<bool> {
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
+  fontFamily: 'Axiforma',
   scaffoldBackgroundColor: const Color(0xFF0B0F1E),
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFF0B0F1E),
@@ -35,45 +36,58 @@ final darkTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: Colors.white.withOpacity(0.08),
-    hintStyle: GoogleFonts.inter(color: Colors.white.withOpacity(0.5)),
+    hintStyle: TextStyle(
+      fontFamily: 'Axiforma',
+      color: Colors.white.withOpacity(0.5),
+    ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
       borderSide: BorderSide.none,
     ),
   ),
   textTheme: TextTheme(
-    headlineLarge: GoogleFonts.inter(
+    headlineLarge: const TextStyle(
+      fontFamily: 'Axiforma',
       color: Colors.white,
       fontSize: 32,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700, // Bold
     ),
-    bodyLarge: GoogleFonts.inter(
+    bodyLarge: const TextStyle(
+      fontFamily: 'Axiforma',
       color: Colors.white,
       fontSize: 16,
+      fontWeight: FontWeight.w400, // Regular
     ),
-    bodyMedium: GoogleFonts.inter(
+    bodyMedium: TextStyle(
+      fontFamily: 'Axiforma',
       color: Colors.white70,
       fontSize: 14,
+      fontWeight: FontWeight.w400, // Regular
     ),
   ),
   chipTheme: ChipThemeData(
     backgroundColor: Colors.white.withOpacity(0.08),
-    labelStyle: GoogleFonts.inter(color: Colors.white.withOpacity(0.9)),
+    labelStyle: TextStyle(
+      fontFamily: 'Axiforma',
+      color: Colors.white.withOpacity(0.9),
+    ),
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
   ),
 );
 
 final lightTheme = ThemeData(
   brightness: Brightness.light,
+  fontFamily: 'Axiforma',
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
     elevation: 0,
     iconTheme: IconThemeData(color: Color(0xFF2B2B2B)),
     titleTextStyle: TextStyle(
+      fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 24,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700, // Bold
     ),
   ),
   colorScheme: const ColorScheme.light(
@@ -92,7 +106,8 @@ final lightTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: const Color(0xFFF5F5F5),
-    hintStyle: GoogleFonts.inter(
+    hintStyle: TextStyle(
+      fontFamily: 'Axiforma',
       color: const Color(0xFF2B2B2B).withOpacity(0.5),
     ),
     border: OutlineInputBorder(
@@ -101,28 +116,33 @@ final lightTheme = ThemeData(
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
   ),
-  textTheme: TextTheme(
-    headlineLarge: GoogleFonts.inter(
+  textTheme: const TextTheme(
+    headlineLarge: TextStyle(
+      fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 32,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700, // Bold
     ),
-    bodyLarge: GoogleFonts.inter(
+    bodyLarge: TextStyle(
+      fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 16,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w500, // Medium
     ),
-    bodyMedium: GoogleFonts.inter(
+    bodyMedium: TextStyle(
+      fontFamily: 'Axiforma',
       color: Color(0xFF666666),
       fontSize: 14,
+      fontWeight: FontWeight.w400, // Regular
     ),
   ),
   chipTheme: ChipThemeData(
     backgroundColor: const Color(0xFFF5F5F5),
-    labelStyle: GoogleFonts.inter(
+    labelStyle: const TextStyle(
+      fontFamily: 'Axiforma',
       color: Color(0xFF2B2B2B),
       fontSize: 14,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w500, // Medium
     ),
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     shape: RoundedRectangleBorder(
