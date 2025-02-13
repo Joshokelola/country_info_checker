@@ -20,6 +20,7 @@ A modern mobile application providing comprehensive information about countries 
   * Continental grouping
   * Administrative regions
   * Current leadership
+  * e.t.c
 
 * **User Experience**
   * Fast, intuitive search
@@ -38,8 +39,21 @@ A modern mobile application providing comprehensive information about countries 
 * `flutter_riverpod`: ^2.6.1 - State management
 * `google_fonts`: ^6.2.1 - Typography
 * `dio`: ^5.8.0+1 - HTTP client
+* `carousel_slider`: ^5.0.0
 
-## 🚀 Setup Guide
+### Production Deployment
+
+To deploy the project to Appetize.io, follow these steps:
+
+1. Build the release APK:
+```bash
+flutter build apk --release
+```
+
+2. Upload the APK to [Appetize.io](https://appetize.io)
+
+Remember to replace the placeholders with the actual values or commands specific to your project.
+
 
 ### Requirements
 1. Flutter SDK (3.24.3+)
