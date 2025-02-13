@@ -105,9 +105,9 @@ class CountryDetailScreen extends ConsumerWidget {
                               '${country.area?.toString() ?? ""} km²', context),
                           _buildInfoRow(
                               'Currency',
-                              country.currencies?.values.first['name']
-                                      ?.toString() ??
-                                  '',
+                              '${country.currencies?.values.first['name']
+                                      ?.toString()} (${country.currencies?.values.first['symbol']})'
+                                ,
                               context),
                           const SizedBox(
                             height: 15,

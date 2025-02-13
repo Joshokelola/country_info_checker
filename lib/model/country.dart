@@ -8,7 +8,7 @@ class Country {
   final Map<String, dynamic>? flags;
   final Map<String, dynamic>? languages;
   final double? area;
-  final List<String>? currencies;
+  final Map<String, dynamic>? currencies;
   final List<String>? timeZones;
   final Map<String, dynamic>? dialingCodes;
   final Map<String, dynamic>? drivingSide;
@@ -42,7 +42,7 @@ class Country {
       languages: json['languages'],
       area: json['area'],
       currencies: json['currencies'],
-      timeZones: json['timezones'],
+      timeZones: List<String>.from(json['timezones'] ?? []),
       dialingCodes: json['idd'],
       drivingSide: json['car'],
       coatOfArms: json['coatOfArms'],
